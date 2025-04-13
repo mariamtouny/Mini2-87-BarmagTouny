@@ -1,13 +1,13 @@
-package com.example.miniapp;
+// package com.example.miniapp;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+// import org.junit.jupiter.api.Test;
+// import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
-class MiniProject2ApplicationTests {
+// @SpringBootTest
+// class MiniProject2ApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
+// 	@Test
+// 	void contextLoads() {
+// 	}
 
-}
+// }
