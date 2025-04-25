@@ -16,7 +16,6 @@ public class Rating {
     private String comment;
     private LocalDateTime ratingDate;
 
-    // Default constructor
     public Rating() {
     }
 
