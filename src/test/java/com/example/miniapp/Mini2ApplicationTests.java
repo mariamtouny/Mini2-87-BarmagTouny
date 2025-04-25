@@ -9,7 +9,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.http.*;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
@@ -23,7 +22,6 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ContextConfiguration(classes = MiniProject2Application.class)
-@SpringBootTest
 @Sql(statements = {
 		// Drop tables if they exist — order matters due to FK constraints
 		"DROP TABLE IF EXISTS payments;",
@@ -69,6 +67,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 }, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
 
+@SpringBootTest
 class Mini2ApplicationTests {
 
 	@Autowired
