@@ -16,16 +16,15 @@ public class Rating {
     private String comment;
     private LocalDateTime ratingDate;
 
-    // Default constructor
     public Rating() {
     }
 
-    public Rating(Long entityId, String entityType, Integer score, String comment) {
+    public Rating(Long entityId, String entityType, Integer score, String comment, LocalDateTime ratingDate) {
         this.entityId = entityId;
         this.entityType = entityType;
         this.score = score;
         this.comment = comment;
-        this.ratingDate = LocalDateTime.now();
+        this.ratingDate = ratingDate;
     }
 
     public Rating(String id, Long entityId, String entityType, Integer score, String comment, LocalDateTime ratingDate) {
