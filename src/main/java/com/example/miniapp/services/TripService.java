@@ -44,14 +44,14 @@ public class TripService {
 
 
     public void deleteTrip(Long id) {
-        if (id == null) {
-            throw new IllegalArgumentException("Trip ID cannot be null");
-        }
+//        if (id == null) {
+//            throw new IllegalArgumentException("Trip ID cannot be null");
+//        }
 
-        Trip existingTrip = tripRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Trip not found"));
+//        Trip existingTrip = tripRepository.findById(id)
+//                .orElseThrow(() -> new RuntimeException("Trip not found"));
 
-        tripRepository.delete(existingTrip);
+        tripRepository.deleteById(id);
     }
 
 

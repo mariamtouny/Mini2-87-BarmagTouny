@@ -87,8 +87,8 @@ public class CustomerService {
      */
     public void deleteCustomer(Long id)
     {
-        if(!customerRepository.existsById(id))
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Customer not found with id: " + id);
+//        if(!customerRepository.existsById(id))
+//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Customer not found with id: " + id);
         customerRepository.deleteById(id);
     }
 
