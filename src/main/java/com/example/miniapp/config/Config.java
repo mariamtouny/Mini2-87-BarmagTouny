@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.config.*;
 import org.springframework.web.client.RestTemplate;
 
 @Configuration
-@EnableJpaRepositories(basePackages = "com.example.miniapp.repositories")
+@EnableJpaRepositories
 @EnableCaching
 public class Config {
 
