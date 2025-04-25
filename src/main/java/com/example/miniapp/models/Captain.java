@@ -23,10 +23,10 @@ public class Captain {
     public Captain() {
     }
 
-    public Captain(String name, String licenseNumber) {
+    public Captain(String name, String licenseNumber, Double avgRatingScore) {
         this.name = name;
         this.licenseNumber = licenseNumber;
-        this.avgRatingScore = 0.0;
+        this.avgRatingScore = avgRatingScore;
     }
 
     public Captain(Long id, String name, String licenseNumber, Double avgRatingScore, List<Trip> trips) {
