@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 import com.example.miniapp.models.*;
 import com.example.miniapp.repositories.*;
 import com.example.miniapp.services.*;
+import com.example.miniapp.config.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
