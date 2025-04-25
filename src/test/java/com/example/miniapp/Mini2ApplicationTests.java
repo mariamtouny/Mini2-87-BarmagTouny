@@ -1,5 +1,6 @@
 package com.example.miniapp;
 
+import com.example.miniapp.MiniProject2.MiniProject2Application;
 import org.springframework.beans.factory.annotation.Value;
 import com.example.miniapp.models.*;
 import com.example.miniapp.repositories.*;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.http.*;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.Sql.ExecutionPhase;
 import org.springframework.web.client.RestTemplate;
@@ -20,6 +22,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@ContextConfiguration(classes = MiniProject2Application.class)
 @SpringBootTest
 @Sql(statements = {
 		// Drop tables if they exist — order matters due to FK constraints
@@ -508,99 +511,99 @@ class Mini2ApplicationTests {
 //		assertEquals(HttpStatus.OK, response.getStatusCode());
 //	}
 //
-//	@Test
-//	public void testControllerAddRating() {
-//		Rating newRating = new Rating(1L, "customer", 5, "Excellent service!", LocalDateTime.now());
-//		HttpHeaders headers = new HttpHeaders();
-//		headers.setContentType(MediaType.APPLICATION_JSON);
-//		HttpEntity<Rating> request = new HttpEntity<>(newRating, headers);
-//
-//		ResponseEntity<Rating> response = restTemplate.postForEntity(BASE_URL_RATING + "/addRating", request, Rating.class);
-//		assertEquals(HttpStatus.OK, response.getStatusCode());
-//		assertNotNull(response.getBody());
-//		assertEquals(newRating.getScore(), response.getBody().getScore());
-//	}
-//
-//	@Test
-//	public void testControllerUpdateRating() throws NoSuchFieldException, ClassNotFoundException, IllegalAccessException {
-//		Rating rating = new Rating(2L, "customer", 4, "Good service.", LocalDateTime.now());
-//		ratingService.addRating(rating);
-//
-//		rating.setComment("Updated service.");
-//		rating.setScore(5);
-//		HttpHeaders headers = new HttpHeaders();
-//		headers.setContentType(MediaType.APPLICATION_JSON);
-//		HttpEntity<Rating> request = new HttpEntity<>(rating, headers);
-//
-//		ResponseEntity<Rating> response = restTemplate.exchange(
-//				BASE_URL_RATING + "/update/" + (getID(RatingPath).get(rating)),
-//				HttpMethod.PUT,
-//				request,
-//				Rating.class
-//		);
-//
-//		assertEquals(HttpStatus.OK, response.getStatusCode());
-//		assertNotNull(response.getBody());
-//		assertEquals(5, response.getBody().getScore());
-//	}
-//
-//	@Test
-//	public void testControllerDeleteRating() throws NoSuchFieldException, ClassNotFoundException, IllegalAccessException {
-//		Rating rating = new Rating(3L, "captain", 3, "Average captain.", LocalDateTime.now());
-//		ratingService.addRating(rating);
-//
-//		ResponseEntity<String> response = restTemplate.exchange(
-//				BASE_URL_RATING + "/delete/" + getID(RatingPath).get(rating),
-//				HttpMethod.DELETE,
-//				null,
-//				String.class
-//		);
-//
-//		assertEquals(HttpStatus.OK, response.getStatusCode());
-//	}
-//
-//	@Test
-//	public void testControllerFindRatingsByEntity() {
-//		Rating rating1 = new Rating(4L, "trip", 5, "Excellent trip!", LocalDateTime.now());
-//		Rating rating2 = new Rating(4L, "trip", 4, "Good trip!", LocalDateTime.now());
-//		ratingService.addRating(rating1);
-//		ratingService.addRating(rating2);
-//
-//		ResponseEntity<List> response = restTemplate.getForEntity(
-//				BASE_URL_RATING + "/findByEntity?entityId=4&entityType=trip",
-//				List.class
-//		);
-//
-//		assertEquals(HttpStatus.OK, response.getStatusCode());
-//		assertNotNull(response.getBody());
-//	}
-//
-//	@Test
-//	public void testControllerFindRatingsByNonExistingEntity() {
-//		ResponseEntity<List> response = restTemplate.getForEntity(
-//				BASE_URL_RATING + "/findByEntity?entityId=4&entityType=trip",
-//				List.class
-//		);
-//
-//		assertEquals(response.getBody().size(),0);
-//	}
-//
-//	@Test
-//	public void testControllerFindRatingsAboveScore() {
-//		Rating rating1 = new Rating(5L, "customer", 3, "Okay service.", LocalDateTime.now());
-//		Rating rating2 = new Rating(6L, "customer", 5, "Awesome service.", LocalDateTime.now());
-//		ratingService.addRating(rating1);
-//		ratingService.addRating(rating2);
-//
-//		ResponseEntity<List> response = restTemplate.getForEntity(
-//				BASE_URL_RATING + "/findAboveScore?minScore=4",
-//				List.class
-//		);
-//
-//		assertEquals(HttpStatus.OK, response.getStatusCode());
-//		assertNotNull(response.getBody());
-//	}
-//
+	@Test
+	public void testControllerAddRating() {
+		Rating newRating = new Rating(1L, "customer", 5, "Excellent service!", LocalDateTime.now());
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		HttpEntity<Rating> request = new HttpEntity<>(newRating, headers);
+
+		ResponseEntity<Rating> response = restTemplate.postForEntity(BASE_URL_RATING + "/addRating", request, Rating.class);
+		assertEquals(HttpStatus.OK, response.getStatusCode());
+		assertNotNull(response.getBody());
+		assertEquals(newRating.getScore(), response.getBody().getScore());
+	}
+
+	@Test
+	public void testControllerUpdateRating() throws NoSuchFieldException, ClassNotFoundException, IllegalAccessException {
+		Rating rating = new Rating(2L, "customer", 4, "Good service.", LocalDateTime.now());
+		ratingService.addRating(rating);
+
+		rating.setComment("Updated service.");
+		rating.setScore(5);
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		HttpEntity<Rating> request = new HttpEntity<>(rating, headers);
+
+		ResponseEntity<Rating> response = restTemplate.exchange(
+				BASE_URL_RATING + "/update/" + (getID(RatingPath).get(rating)),
+				HttpMethod.PUT,
+				request,
+				Rating.class
+		);
+
+		assertEquals(HttpStatus.OK, response.getStatusCode());
+		assertNotNull(response.getBody());
+		assertEquals(5, response.getBody().getScore());
+	}
+
+	@Test
+	public void testControllerDeleteRating() throws NoSuchFieldException, ClassNotFoundException, IllegalAccessException {
+		Rating rating = new Rating(3L, "captain", 3, "Average captain.", LocalDateTime.now());
+		ratingService.addRating(rating);
+
+		ResponseEntity<String> response = restTemplate.exchange(
+				BASE_URL_RATING + "/delete/" + getID(RatingPath).get(rating),
+				HttpMethod.DELETE,
+				null,
+				String.class
+		);
+
+		assertEquals(HttpStatus.OK, response.getStatusCode());
+	}
+
+	@Test
+	public void testControllerFindRatingsByEntity() {
+		Rating rating1 = new Rating(4L, "trip", 5, "Excellent trip!", LocalDateTime.now());
+		Rating rating2 = new Rating(4L, "trip", 4, "Good trip!", LocalDateTime.now());
+		ratingService.addRating(rating1);
+		ratingService.addRating(rating2);
+
+		ResponseEntity<List> response = restTemplate.getForEntity(
+				BASE_URL_RATING + "/findByEntity?entityId=4&entityType=trip",
+				List.class
+		);
+
+		assertEquals(HttpStatus.OK, response.getStatusCode());
+		assertNotNull(response.getBody());
+	}
+
+	@Test
+	public void testControllerFindRatingsByNonExistingEntity() {
+		ResponseEntity<List> response = restTemplate.getForEntity(
+				BASE_URL_RATING + "/findByEntity?entityId=4&entityType=trip",
+				List.class
+		);
+
+		assertEquals(response.getBody().size(),0);
+	}
+
+	@Test
+	public void testControllerFindRatingsAboveScore() {
+		Rating rating1 = new Rating(5L, "customer", 3, "Okay service.", LocalDateTime.now());
+		Rating rating2 = new Rating(6L, "customer", 5, "Awesome service.", LocalDateTime.now());
+		ratingService.addRating(rating1);
+		ratingService.addRating(rating2);
+
+		ResponseEntity<List> response = restTemplate.getForEntity(
+				BASE_URL_RATING + "/findAboveScore?minScore=4",
+				List.class
+		);
+
+		assertEquals(HttpStatus.OK, response.getStatusCode());
+		assertNotNull(response.getBody());
+	}
+
 //	@Test
 //	public void testControllerGetCaptainsByRatingNoResults() {
 //		captainService.addCaptain(new Captain("Low Rating", "LR789", 2.0));
